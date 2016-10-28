@@ -44,7 +44,8 @@ class MyWindow(QtWidgets.QWidget):
                             countC = countC + float(re.findall(r'\d*\.*\d*', str(sht.Cells(n, 8).value))[0])
                     print(countA, countB, countC)
                     l[temp].append(name)
-                    l[temp].append(countA + countB)
+                    l[temp].append(countA)
+                    l[temp].append(countB)
                     l[temp].append(countC)
                     temp = temp + 1
                     # 进度条测试
@@ -63,13 +64,15 @@ class MyWindow(QtWidgets.QWidget):
             xlsBook = excel.Workbooks.Add()
             xlsSht = xlsBook.Worksheets('Sheet1')
             xlsSht.Cells(1, 1).Value = '姓名'
-            xlsSht.Cells(1, 2).Value = 'AB类'
-            xlsSht.Cells(1, 3).Value = 'C类'
+            xlsSht.Cells(1, 2).Value = 'A类'
+            xlsSht.Cells(1, 3).Value = 'B类'
+            xlsSht.Cells(1, 4).Value = 'C类'
             for i in range(0, len(l)):
                 try:
                     xlsSht.Cells(i + 2, 1).Value = l[i][0]
                     xlsSht.Cells(i + 2, 2).Value = l[i][1]
                     xlsSht.Cells(i + 2, 3).Value = l[i][2]
+                    xlsSht.Cells(i + 2, 4).Value = l[i][3]
                 except:
                     pass
         else:
